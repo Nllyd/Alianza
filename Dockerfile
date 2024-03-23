@@ -5,7 +5,7 @@ FROM php:8.0-apache
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Configura Apache para que sirva el sitio web de Laravel
-COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 # Copia los archivos de tu proyecto Laravel al contenedor
 COPY . /var/www/html
@@ -22,8 +22,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Expone el puerto 80 para que Apache pueda servir la aplicación
 EXPOSE 80
-
-COPY config/apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 # Comando para iniciar Apache en el contenedor
 CMD ["apache2-foreground"]
