@@ -23,5 +23,7 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Expone el puerto 80 para que Apache pueda servir la aplicación
 EXPOSE 80
 
+COPY config/apache-config.conf /etc/apache2/sites-available/000-default.conf
+
 # Comando para iniciar Apache en el contenedor
 CMD ["apache2-foreground"]
